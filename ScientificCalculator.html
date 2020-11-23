@@ -61,7 +61,7 @@
             <td><input type="button" value="5" onclick="display('5')" /> </td>
             <td><input type="button" value="6" onclick="display('6')" /> </td>
             <td><input type="button" value="π" onclick="display(Math.PI)" /> </td>
-            <td><input type="button" value="Cos" onclick="'cosCalc()" /> </td>
+            <td><input type="button" value="Cos" onclick="cosCalc()" /> </td>
         </tr>
         <tr>
             <td><input type="button" value="*" onclick="display('*')" /> </td>
@@ -140,7 +140,14 @@
         function sinCalc(){
                 
             string = document.getElementById("dispVal").value
-            document.getElementById("dispVal").value = Math.sin(eval(string) * Math.PI / 180);
+            
+            if (string == ""){
+                document.getElementById("dispVal").value = 0;
+            }
+            
+            else{
+                document.getElementById("dispVal").value = Math.sin(eval(string) * Math.PI / 180);
+            }            
             
             if (history.length == 10){
                 history.shift();
@@ -154,7 +161,14 @@
         function cosCalc(){
             
             string = document.getElementById("dispVal").value
-            document.getElementById("dispVal").value = Math.cos(eval(string) * Math.PI / 180);
+            
+            if (string == ""){
+                document.getElementById("dispVal").value=0;
+            }
+            
+            else{
+                document.getElementById("dispVal").value = Math.cos(eval(string) * Math.PI / 180);
+            }
             
             if (history.length == 10){
                 history.shift();
@@ -168,8 +182,15 @@
         function tanCalc(){
             
             string = document.getElementById("dispVal").value
-            document.getElementById("dispVal").value = Math.tan(eval(string) * Math.PI / 180);
             
+            if (string == ""){
+                document.getElementById("dispVal").value=0;
+            }
+            
+            else{
+                document.getElementById("dispVal").value = Math.tan(eval(string) * Math.PI / 180);              
+            }
+                        
             if (history.length == 10){
                 history.shift();
             }
@@ -190,14 +211,8 @@
             
             if (history.length == 0){
                 
-                try{
-                    document.getElementById("dispVal").value = history[0];
+                document.getElementById("dispVal").value = "";
                 }
-                
-                catch(error){
-                    document.getElementById("dispVal").value = "";
-                }
-            }
             
             else if(current == 0){
                 document.getElementById("dispVal").value = history[0];
